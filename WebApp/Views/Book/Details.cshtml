@@ -1,0 +1,35 @@
+﻿@model EntityFramework2.Entities.Book
+
+<div class="container mt-5">
+    <a asp-action="Index" class="text-decoration-none">← Back</a>
+
+    <div class="mt-3 text-secondary">
+        <i class="bi bi-calendar"></i> @ViewBag.SharedDate
+    </div>
+
+    <h2 class="fw-bold mt-2">Book Details</h2>
+    <p class="text-muted">Full information for this book.</p>
+
+    <div class="card shadow-sm p-4 mt-4" style="max-width: 600px;">
+        <div class="mb-3">
+            <label class="text-uppercase text-muted fw-bold small d-block">Title</label>
+            <span class="fs-5">@Model.Title</span>
+        </div>
+
+        <div class="mb-3">
+            <label class="text-uppercase text-muted fw-bold small d-block">Author</label>
+            <span class="fs-5">@Model.Author?.Name</span>
+        </div>
+
+        <div class="mb-3">
+            <label class="text-uppercase text-muted fw-bold small d-block">ISBN</label>
+            <span class="fs-5">@Model.ISBN</span>
+        </div>
+
+        <div class="mb-3">
+            <label class="text-uppercase text-muted fw-bold small d-block">Category</label>
+            <span class="fs-5">@Model.Category</span>
+        </div>
+ 
+    </div>
+</div>

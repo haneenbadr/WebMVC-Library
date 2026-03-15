@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../EntityFramework1/EntityFramework2/EntityFramework2.csproj" />
+  <Project Path="WebApp/WebApp.csproj" />
+</Solution>
