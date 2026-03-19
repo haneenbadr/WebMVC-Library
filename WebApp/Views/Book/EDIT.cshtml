@@ -1,54 +1,27 @@
-﻿@model EntityFramework2.Entities.Book
+﻿@model EditBookViewModel
 
-<div class="container mt-5">
-    <div class="card shadow-sm p-4 mx-auto" style="max-width: 700px; border-top: 5px solid #ffc107;">
-        <h2 class="mb-3">Edit Book Details</h2>
+<form asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" asp-for="BookID" />
 
-        <form asp-action="Edit" method="post">
-             
-            <input type="hidden" asp-for="BookID" />
-
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="fw-bold small">TITLE</label>
-                    <input asp-for="Title" class="form-control" />
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label class="fw-bold small">ISBN</label>
-                    <input asp-for="ISBN" class="form-control" />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="fw-bold small">PRICE</label>
-                    <input asp-for="Price" class="form-control" type="number" step="0.01" />
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label class="fw-bold small">PUBLISH YEAR</label>
-                    <input asp-for="PublishYear" class="form-control" type="date" />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="fw-bold small">AUTHOR ID (FK)</label>
-                    <input asp-for="AuthorID" class="form-control" readonly />
-                    <small class="text-muted">Author is locked for this entry.</small>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label class="fw-bold small">CATEGORY</label>
-                   
-                    <select asp-for="CategoryID" asp-items="ViewBag.CategoryList" class="form-select">
-                        <option value="">-- Select Category --</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="mt-4">
-                <button type="submit" class="btn btn-warning px-5 text-dark fw-bold">Save Changes</button>
-                <a asp-action="Index" class="btn btn-outline-secondary ms-2">Back to List</a>
-            </div>
-        </form>
+    <div class="mb-3">
+        <label>Current Attachments:</label>
+        <div class="d-flex flex-wrap">
+            @if (Model.ExistingAttachments != null)
+            {
+                @foreach (var attr in Model.ExistingAttachments)
+                {
+                    <div class="m-2 text-center">
+                        <img src="~/attachments/@attr.FileName" style="width:100px; height:100px;" class="img-thumbnail" />
+                    </div>
+                }
+            }
+        </div>
     </div>
-</div>
+
+    <div class="mb-3">
+        <label>Upload New Attachments (This will replace old ones):</label>
+        <input asp-for="NewAttachments" type="file" multiple class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-warning">Update Book</button>
+</form>
